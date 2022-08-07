@@ -1,0 +1,11 @@
+Flask  
+datetime 
+uuid
+Flask-SQLAlchemy
+PyJWT
+Flask-Restful
+Flask-Sqlalchemy
+Flask-Migrate
+Flask-Marshmallow
+Marshmallow-Sqlalchemy
+PyJWT
