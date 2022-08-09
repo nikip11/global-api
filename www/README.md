@@ -3,7 +3,8 @@
 - [X] User CRUD
 - [ ] User Permission
 - [ ] API CORS
-- [X] JWT login 
+- [X] JWT login
+- [ ] JWT refresh token
 - [ ] Modules
   - [ ] Main: Categories and tags
   - [X] Kids Stories

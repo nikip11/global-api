@@ -1,8 +1,8 @@
 from flask import request, jsonify
 from flask_restful import Resource
 from flask_jwt_extended import create_access_token, create_refresh_token
-# jwt_required, get_jwt_identity
-from flask_jwt_extended import get_jwt_identity, unset_jwt_cookies, create_access_token, create_refresh_token, jwt_required
+from flask_jwt_extended import get_jwt_identity, create_access_token, create_refresh_token, jwt_required
+from flask_jwt_extended import unset_jwt_cookies
 from app.common.error_handling import ObjectNotFound
 from .schemas import UserSchema
 from  .models import User
@@ -37,7 +37,6 @@ class UserListResource(Resource):
         current_user = get_jwt_identity()
         print(current_user)
         users = User.query.all()
-        print('13ewqeqwe')
         return user_schema.dump(users, many=True)
 
     @jwt_required()
@@ -57,8 +56,8 @@ class LoginResource(Resource):
                 raise ObjectNotFound('User not found')
             if not user.check_password(data['password']):
                 raise ObjectNotFound('Password is incorrect')
-            access_token = create_access_token(identity=user.id)
-            refresh_token = create_refresh_token(identity=user.id)
+            access_token = create_access_token(identity=user_schema.dump(user))
+            refresh_token = create_refresh_token(identity=user_schema.dump(user))
             return jsonify({"token": access_token, "refresh_token": refresh_token, "user": user_schema.dump(user)})
 
 class LogoutResource(Resource):
