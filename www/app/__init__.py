@@ -3,7 +3,9 @@ from flask_restful import Api
 from app.common.error_handling import ObjectNotFound, AppErrorBaseClass
 from app.db import db
 # from app.films.api_v1_0.resources import films_v1_0_bp
+from flask_jwt_extended import JWTManager
 from app.users.routes import users_blueprint
+from app.stories.routes import stories_blueprint
 from .ext import ma, migrate
 
 def create_app(settings_module):
@@ -13,6 +15,8 @@ def create_app(settings_module):
     db.init_app(app)
     ma.init_app(app)
     migrate.init_app(app, db)
+    # JWT token
+    jwt = JWTManager(app)
     # Captura todos los errores 404
     Api(app, catch_all_404s=True)
     # Deshabilita el modo estricto de acabado de una URL con /
@@ -20,6 +24,7 @@ def create_app(settings_module):
     # Registra los blueprints
     # app.register_blueprint(films_v1_0_bp)
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(stories_blueprint)
     # Registra manejadores de errores personalizados
     register_error_handlers(app)
     return app
@@ -27,6 +32,7 @@ def create_app(settings_module):
 def register_error_handlers(app):
     @app.errorhandler(Exception)
     def handle_exception_error(e):
+        print(e)
         return jsonify({'msg': 'Internal server error'}), 500
     @app.errorhandler(405)
     def handle_405_error(e):

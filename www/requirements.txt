@@ -9,3 +9,4 @@ Flask-Migrate
 Flask-Marshmallow
 Marshmallow-Sqlalchemy
 PyJWT
+flask-jwt-extended

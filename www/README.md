@@ -1,9 +1,10 @@
 # TODO
-- [ ] Define app structure
-- [ ] User CRUD
+- [X] Define app structure
+- [X] User CRUD
 - [ ] User Permission
-- [ ] JWT login 
+- [ ] API CORS
+- [X] JWT login 
 - [ ] Modules
-  - [ ] Tales
+  - [ ] Main: Categories and tags
+  - [X] Kids Stories
   - [ ] CV
-  - [ ]
