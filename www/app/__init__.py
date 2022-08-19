@@ -4,6 +4,7 @@ from app.common.error_handling import ObjectNotFound, AppErrorBaseClass
 from app.db import db
 # from app.films.api_v1_0.resources import films_v1_0_bp
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 from app.users.routes import users_blueprint
 from app.stories.routes import stories_blueprint
 from .ext import ma, migrate
@@ -15,6 +16,7 @@ def create_app(settings_module):
     db.init_app(app)
     ma.init_app(app)
     migrate.init_app(app, db)
+    CORS(app)
     # JWT token
     jwt = JWTManager(app)
     # Captura todos los errores 404

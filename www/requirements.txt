@@ -10,3 +10,4 @@ Flask-Marshmallow
 Marshmallow-Sqlalchemy
 PyJWT
 flask-jwt-extended
+Flask-Cors
